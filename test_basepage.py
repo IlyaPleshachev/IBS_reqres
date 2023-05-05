@@ -5,14 +5,20 @@ import pytest
 link = 'https://reqres.in/'
 
 class Test_with_webdriver():
-    @pytest.mark.skip
+    """Several tests with webdriver
+    - Get list users
+    - Create user
+    - Update user
+    - Delete user
+    """
+    #@pytest.mark.skip
     def test_get_list_users(self, browser):
         page = BasePage(browser, link)
         page.open()
         page.go_to_list_users()
         print(page.get_request_payload())
 
-    @pytest.mark.skip
+    #@pytest.mark.skip
     def test_create_new_user(self, browser):
         page = BasePage(browser, link)
         page.open()
@@ -23,26 +29,26 @@ class Test_with_webdriver():
         print('\nPrintin api answer', api_answer)
         assert int(web_answer[2]) == api_answer[0], 'Not equal'
 
-    @pytest.mark.skip
+    #@pytest.mark.skip
     def test_update_user(self, browser):
         page = BasePage(browser, link)
         page.open()
         page.go_to_update_user()
         print(page.get_request_payload())
 
-    @pytest.mark.skip
+    #@pytest.mark.skip
     def test_delete_user(self, browser):
         page = BasePage(browser, link)
         page.open()
         page.go_to_delete_user()
         print(page.get_request_payload())
 
-    def test_checker(self):
+class Test_with_API():
+     def test_api_get_list_users(self):
         api_answer = Api_BasePage.get_list_users(self)
-        print('\nPrinting get_list_users', api_answer)
+     def test_api_create_new_user(self):
         api_answer = Api_BasePage.create_new_user(self)
-        print('\nPrinting create_new_user', api_answer)
+     def test_update_user(self):
         api_answer = Api_BasePage.update_user(self)
-        print('\nPrinting update_user', api_answer)
+     def test_delete_users(self):
         api_answer = Api_BasePage.delete_user(self)
-        print('\nPrinting delete_users', api_answer)

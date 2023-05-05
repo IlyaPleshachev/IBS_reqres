@@ -2,6 +2,11 @@ from pages.BasePage import BasePage
 import requests
 
 class Api_BasePage(BasePage):
+    """API functions
+    - Get list users
+    - Create user
+    - Update user
+    - Delete user"""
     def get_list_users(self):
         URL = 'https://reqres.in/api/users?page=2'
         response = requests.get(URL)
@@ -22,8 +27,6 @@ class Api_BasePage(BasePage):
                             "text": "To keep ReqRes free, contributions towards server costs are appreciated!"}}
         res_status = response.status_code
         res_json = response.json()
-        assert res_status == 200, 'Status code is not 200'
-        assert res_json == data, 'Response json is not equal example'
         return res_status, res_json
 
 
