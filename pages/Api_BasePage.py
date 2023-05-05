@@ -28,8 +28,8 @@ class Api_BasePage(BasePage):
                             "text": "To keep ReqRes free, contributions towards server costs are appreciated!"}}
         res_status = response.status_code
         res_json = response.json()
-        assert res_status == 200, 'Status code is not 200'
-        assert res_json == data, 'Response and request content is not equal'
+        assert res_status == 200, f'Status code (= {res_status}) is not 200'
+        assert res_json == data, 'Response and request content are not equal'
         return res_status, res_json
 
 
@@ -42,7 +42,7 @@ class Api_BasePage(BasePage):
         response = requests.post(URL, data=data)
         res_status = response.status_code
         res_json = response.json()
-        assert res_status == 201, 'Status code is not 201'
+        assert res_status == 201, f'Status code (= {res_status}) is not 201'
         return res_status, res_json
 
     def update_user(self):
@@ -55,14 +55,14 @@ class Api_BasePage(BasePage):
         # print(response.status_code)
         res_status = response.status_code
         res_json = response.json()
-        assert res_status == 200, 'Status code is not 200'
+        assert res_status == 200, f'Status code (= {res_status}) is not 200'
         return res_status, res_json
 
     def delete_user(self):
         URL = "https://reqres.in/api/users/2"
         response = requests.delete(URL)
         res_status = response.status_code
-        assert res_status == 204, 'Status code is not 204'
+        assert res_status == 204, f'Status code (= {res_status}) is not 204'
         return res_status
     def unhappy_register(self):
         URL = "https://reqres.in/api/register"
@@ -71,5 +71,5 @@ class Api_BasePage(BasePage):
         }
         response = requests.post(URL, data=data)
         res_status = response.status_code
-        assert res_status == 200, f'Status code({res_status}) is not 200'
+        assert res_status == 200, f'Status code (= {res_status}) is not 200'
         return res_status

@@ -1,4 +1,6 @@
 .idea
 __pycache__/
 /selenium_env/
+/selenium_env/__init__.py
+
 
