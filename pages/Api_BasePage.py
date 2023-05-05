@@ -61,4 +61,12 @@ class Api_BasePage(BasePage):
         res_status = response.status_code
         assert res_status == 204, 'Status code is not 204'
         return res_status
-
+    def unhappy_register(self):
+        URL = "https://reqres.in/api/register"
+        data = {
+            "email": "sydney@fife"
+        }
+        response = requests.put(URL, data=data)
+        res_status = response.status_code
+        assert res_status == 200, f'Status code({res_status}) is not 200'
+        return res_status
