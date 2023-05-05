@@ -9,6 +9,7 @@ class Test_with_webdriver():
         page = BasePage(browser, link)
         page.open()
         page.go_to_list_users()
+        print(page.get_request_payload())
 
 
     @pytest.mark.skip
@@ -16,16 +17,18 @@ class Test_with_webdriver():
         page = BasePage(browser, link)
         page.open()
         page.go_to_create_new_user()
+        print(page.get_request_payload())
 
     @pytest.mark.skip
     def test_update_user(self, browser):
         page = BasePage(browser, link)
         page.open()
         page.go_to_update_user()
-
+        print(page.get_request_payload())
 
     @pytest.mark.skip
     def test_delete_user(self, browser):
         page = BasePage(browser, link)
         page.open()
         page.go_to_delete_user()
+        print(page.get_request_payload())
