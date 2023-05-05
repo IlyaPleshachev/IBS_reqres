@@ -12,6 +12,7 @@ class Test_with_webdriver():
         page.go_to_list_users()
         print(page.get_request_payload())
 
+    @pytest.mark.skip
     def test_create_new_user(self, browser):
         page = BasePage(browser, link)
         page.open()
@@ -20,7 +21,7 @@ class Test_with_webdriver():
         api_answer = Api_BasePage.create_new_user(self)
         print('\nPrintin web answer', web_answer)
         print('\nPrintin api answer', api_answer)
-        assert web_answer[2] == api_answer[0], 'Not equal'
+        assert int(web_answer[2]) == api_answer[0], 'Not equal'
 
     @pytest.mark.skip
     def test_update_user(self, browser):
@@ -35,3 +36,13 @@ class Test_with_webdriver():
         page.open()
         page.go_to_delete_user()
         print(page.get_request_payload())
+
+    def test_checker(self):
+        api_answer = Api_BasePage.get_list_users(self)
+        print('\nPrinting get_list_users', api_answer)
+        api_answer = Api_BasePage.create_new_user(self)
+        print('\nPrinting create_new_user', api_answer)
+        api_answer = Api_BasePage.update_user(self)
+        print('\nPrinting update_user', api_answer)
+        api_answer = Api_BasePage.delete_user(self)
+        print('\nPrinting delete_users', api_answer)

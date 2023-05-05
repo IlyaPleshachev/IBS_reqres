@@ -5,8 +5,6 @@ class Api_BasePage(BasePage):
     def get_list_users(self):
         URL = 'https://reqres.in/api/users?page=2'
         response = requests.get(URL)
-        print(response.status_code)
-        print(response.json())
         data = {"page": 2, "per_page": 6, "total": 12, "total_pages": 2, "data": [
             {"id": 7, "email": "michael.lawson@reqres.in", "first_name": "Michael", "last_name": "Lawson",
              "avatar": "https://reqres.in/img/faces/7-image.jpg"},
@@ -22,10 +20,10 @@ class Api_BasePage(BasePage):
              "avatar": "https://reqres.in/img/faces/12-image.jpg"}],
                 "support": {"url": "https://reqres.in/#support-heading",
                             "text": "To keep ReqRes free, contributions towards server costs are appreciated!"}}
-        assert response.status_code == 200, 'Status code is not 200'
-        assert response.json() == data, 'Response json is not equal example'
         res_status = response.status_code
         res_json = response.json()
+        assert res_status == 200, 'Status code is not 200'
+        assert res_json == data, 'Response json is not equal example'
         return res_status, res_json
 
 
@@ -36,12 +34,10 @@ class Api_BasePage(BasePage):
             "job": "leader"
         }
         response = requests.post(URL, data=data)
-
         res_status = response.status_code
         res_json = response.json()
-        assert response.status_code == 201, 'Status code is not 201'
+        assert res_status == 201, 'Status code is not 201'
         return res_status, res_json
-
 
     def update_user(self):
         URL = "https://reqres.in/api/users/2"
@@ -51,11 +47,15 @@ class Api_BasePage(BasePage):
         }
         response = requests.put(URL, data=data)
         # print(response.status_code)
-        assert response.status_code == 200, 'Status code is not 200'
-
+        res_status = response.status_code
+        res_json = response.json()
+        assert res_status == 200, 'Status code is not 200'
+        return res_status, res_json
 
     def delete_user(self):
         URL = "https://reqres.in/api/users/2"
         response = requests.delete(URL)
-        assert response.status_code == 204, 'Status code is not 204'
+        res_status = response.status_code
+        assert res_status == 204, 'Status code is not 204'
+        return res_status
 
