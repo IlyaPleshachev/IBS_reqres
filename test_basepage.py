@@ -39,7 +39,7 @@ class Test_with_webdriver():
         page.go_to_list_users()
         web_answer = page.get_request_payload()
         api_answer = Api_BasePage.get_list_users(self)
-        assert int(web_answer[2]) == api_answer[0], 'Web and api requests arent equal'
+        assert int(web_answer[2]) == api_answer[0], f'Web {web_answer[2]} and api {api_answer[0]} requests arent equal'
 
     @pytest.mark.create
     def test_create_new_user(self, browser):
@@ -48,7 +48,7 @@ class Test_with_webdriver():
         page.go_to_create_new_user()
         web_answer = page.get_request_payload()
         api_answer = Api_BasePage.create_new_user(self)
-        assert int(web_answer[2]) == api_answer[0], 'Web and api requests arent equal'
+        assert int(web_answer[2]) == api_answer[0], f'Web {web_answer[2]} and api {api_answer[0]} requests arent equal'
 
     @pytest.mark.update
     def test_update_user(self, browser):
@@ -57,7 +57,7 @@ class Test_with_webdriver():
         page.go_to_update_user()
         web_answer = page.get_request_payload()
         api_answer = Api_BasePage.update_user(self)
-        assert int(web_answer[2]) == api_answer[0], 'Web and api requests arent equal'
+        assert int(web_answer[2]) == api_answer[0], f'Web {web_answer[2]} and api {api_answer[0]} requests arent equal'
 
     @pytest.mark.delete
     def test_delete_user(self, browser):
@@ -66,6 +66,15 @@ class Test_with_webdriver():
         page.go_to_delete_user()
         web_answer = page.get_request_payload()
         api_answer = Api_BasePage.delete_user(self)
-        assert int(web_answer[2]) == api_answer, 'Web and api requests arent equal'
+        assert int(web_answer[2]) == api_answer, f'Web {web_answer[2]} and api {api_answer} requests arent equal'
+
+    @pytest.mark.xfail
+    def test_unhappy_register(self, browser):
+        page = BasePage(browser, link)
+        page.open()
+        page.go_to_unhappy_register()
+        web_answer = page.get_request_payload()
+        api_answer = Api_BasePage.unhappy_register(self)
+        assert int(web_answer[2]) == api_answer, f'Web {web_answer[2]} and api {api_answer} requests arent equal'
 
 

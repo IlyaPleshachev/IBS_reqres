@@ -29,7 +29,10 @@ class BasePage():
         link = self.browser.find_element(*BasePageLocators.LINK_DELETE_USER)
         link.click()
         time.sleep(1)
-
+    def go_to_unhappy_register(self):
+        link = self.browser.find_element(*BasePageLocators.LINK_DELETE_USER)
+        link.click()
+        time.sleep(1)
     def get_request_payload(self):
         # header_text и payload_text - мы отправляем
         header_text = self.browser.find_element(*BasePageLocators.REQUEST_HEADER).text

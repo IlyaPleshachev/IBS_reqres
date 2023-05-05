@@ -7,6 +7,7 @@ class BasePageLocators():
     LINK_CREATE_NEW_USER = (By.CSS_SELECTOR, '[data-id="post"]')
     LINK_UPDATE_USER = (By.CSS_SELECTOR, '[data-id="put"]')
     LINK_DELETE_USER = (By.CSS_SELECTOR, '[data-id="delete"]')
+    LINK_UNHAPPY_REGISTER = (By.CSS_SELECTOR, '[data-id="register-unsuccessful"]')
 
     # Request locators
     REQUEST_HEADER = (By.CSS_SELECTOR, '[data-key="url"]')

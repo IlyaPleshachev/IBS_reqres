@@ -6,7 +6,8 @@ class Api_BasePage(BasePage):
     - Get list users
     - Create user
     - Update user
-    - Delete user"""
+    - Delete user
+    - Negative register"""
     def get_list_users(self):
         URL = 'https://reqres.in/api/users?page=2'
         response = requests.get(URL)
@@ -27,6 +28,8 @@ class Api_BasePage(BasePage):
                             "text": "To keep ReqRes free, contributions towards server costs are appreciated!"}}
         res_status = response.status_code
         res_json = response.json()
+        assert res_status == 200, 'Status code is not 200'
+        assert res_json == data, 'Response and request content is not equal'
         return res_status, res_json
 
 
@@ -66,7 +69,7 @@ class Api_BasePage(BasePage):
         data = {
             "email": "sydney@fife"
         }
-        response = requests.put(URL, data=data)
+        response = requests.post(URL, data=data)
         res_status = response.status_code
         assert res_status == 200, f'Status code({res_status}) is not 200'
         return res_status
